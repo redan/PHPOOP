@@ -1,5 +1,5 @@
 <?php
-include $_SERVER['DOCUMENT_ROOT']. "/Lesson2/services/Autoloader.php";
+include $_SERVER['DOCUMENT_ROOT'] . "/WorkingSpace/services/Autoloader.php";
 
 spl_autoload_register([new app\services\Autoloader(), 'loadClass']);
 
