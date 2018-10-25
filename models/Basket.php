@@ -3,16 +3,17 @@
 namespace app\models;
 
 
-class Basket extends Model
+class Basket extends DataModel
 {
-    public $order;
-    public $orderHistory;
-    public $sum;
-    public $personalSale;
+    public $id;
+    public $userName;
+    public $Basket;
+    public $adress;
+    public $status;
 
 
-    public function getTableName()
+    public static function getTableName()
     {
-        return 'basket';
+        return 'orders';
     }
 }

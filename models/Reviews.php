@@ -4,12 +4,12 @@
 namespace app\models;
 
 
-class Reviews extends Model
+class Reviews extends DataModel
 {
     public $reviews;
     public $newReview;
 
-    public function getTableName()
+    public static function getTableName()
     {
         return 'reviews';
     }

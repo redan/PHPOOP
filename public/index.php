@@ -4,7 +4,12 @@ include ROOT_DIR . "/services/Autoloader.php";
 
 spl_autoload_register([new app\services\Autoloader(), 'loadClass']);
 
-$product = new \app\models\Product();
+$controllerName = $_GET['c'] ?: DEFAULT_CONTROLLER;
+$actionName = $_GET['a'];
 
+$controllerClass = CONTROLLERS_NAMESPACE . "\\" . ucfirst($controllerName) . "Controller";
 
-var_dump($product->getAll());
+if(class_exists($controllerClass)){
+    $controller = new $controllerClass;
+    $controller->run($actionName);
+}

@@ -4,25 +4,25 @@ namespace app\models;
 
 use app\services\Db;
 
-abstract class Model implements IModel
+abstract class DataModel implements IModel
 {
     private $db;
 
-    public function __construct()
+    public  function __construct()
     {
         $this->db = Db::getInstance();
     }
 
-    public function getAll(){
-        $table = $this->getTableName();
+    public static function getAll(){
+        $table = static::getTableName();
         $sql = "SELECT * FROM {$table}";
-        return $this->db->queryAll($sql);
+        return Db::getInstance()->queryAll($sql);
     }
 
-    public function getOne($id){
-        $table = $this->getTableName();
+    public static function getOne($id){
+        $table = static::getTableName();
         $sql = "SELECT * FROM {$table} WHERE id = :id";
-        return $this->db->queryOne($sql, [':id' => $id]);
+        return Db::getInstance()->queryOne($sql, [':id' => $id]);
     }
 
     public function insert(){
