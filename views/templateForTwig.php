@@ -8,10 +8,8 @@
     <title>Document</title>
 </head>
 <body>
-<header>123</header>
-<div class="content">
-    <?=$content?>
-</div>
-<footer>456</footer>
+{{ product }}
+{{ price }}
+{{ description }}
 </body>
 </html>
