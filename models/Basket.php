@@ -7,13 +7,13 @@ class Basket extends DataEntity
 {
     public $id;
     public $userName;
-    public $Basket;
+    public $basket;
     public $adress;
     public $status;
 
-
-    public static function getTableName()
+    public function prepareBasket()
     {
-        return 'orders';
+        return $this->basket = base64_decode(unserialize($this->basket));
     }
+
 }

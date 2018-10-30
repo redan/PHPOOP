@@ -17,6 +17,6 @@ class ProductController extends Controller
         $id = (new Request())->get('id');
 
         $model = (new ProductRepository())->getOne($id);
-        echo $this->render("card", ['model' => $model]);
+        echo $this->render("basket", ['model' => $model]);
     }
 }

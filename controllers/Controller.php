@@ -25,7 +25,7 @@ abstract class Controller
         if(method_exists($this, $method)){
             $this->$method();
         }else{
-            echo "404";
+            header('HTTP/1.1 404 Not Found', true, 404);
         }
     }
 
