@@ -4,7 +4,7 @@
 namespace app\models;
 
 
-class Reviews extends DataModel
+class Reviews extends DataEntity
 {
     public $reviews;
     public $newReview;

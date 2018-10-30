@@ -1,4 +1,6 @@
-<h1><?=$userName?></h1>
-<h2><?=$basket?></h2>
-<p>Адрес:<?=$adress?></p>
-<p>Статус:<?=$status?></p>
+<?php /** @var \app\models\Product $model */?>
+
+<h1><?=$model->id?></h1>
+<h2><?=$model->product?></h2>
+<p><?=$model->info?></p>
+<p><?=$model->price?></p>

@@ -3,7 +3,7 @@
 namespace app\models;
 
 
-class Basket extends DataModel
+class Basket extends DataEntity
 {
     public $id;
     public $userName;

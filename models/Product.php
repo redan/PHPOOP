@@ -2,22 +2,10 @@
 
 namespace app\models;
 
-class Product extends DataModel
+class Product extends DataEntity
 {
     public $id;
-    public $name;
-    public $description;
+    public $product;
+    public $info;
     public $price;
-
-    public static function getTableName()
-    {
-        return 'products';
-    }
-
-    public function getProductsWithDiscount()
-    {
-
-    }
-
-
 }
