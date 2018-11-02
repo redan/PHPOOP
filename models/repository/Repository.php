@@ -2,6 +2,7 @@
 
 namespace app\models\repository;
 
+use app\base\App;
 use app\models\DataEntity;
 use app\services\Db;
 
@@ -74,6 +75,6 @@ abstract class Repository implements IRepository
     }
 
     private static function getDb(){
-        return Db::getInstance();
+        return App::call()->db;
     }
 }

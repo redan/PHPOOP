@@ -11,9 +11,12 @@ class Request
     private $actionName;
     private $params;
 
+    private $requestMethod;
+
     public function __construct()
     {
-        $this->requestString= $_SERVER['REQUEST_URI'];
+        $this->requestString = $_SERVER['REQUEST_URI'];
+        $this->requestMethod = $_SERVER['REQUEST_METHOD'];
         try {
             $this->parseRequest();
         } catch (\Exception $e) {
@@ -56,5 +59,20 @@ class Request
             return $this->params['post'][$name];
         }
         return null;
+    }
+
+    public function getRequestMethod()
+    {
+        return $this->requestMethod;
+    }
+
+    public function isGet()
+    {
+        return $this->requestMethod == "GET";
+    }
+
+    public function isPost()
+    {
+        return $this->requestMethod == "POST";
     }
 }
