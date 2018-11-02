@@ -9,7 +9,8 @@ class ProductController extends Controller
 {
     public function actionIndex()
     {
-        echo "catalog";
+        $products = (new ProductRepository())->getAll();
+        echo $this->render('catalog', ['products' => $products]);
     }
 
     public function actionCard()
@@ -17,6 +18,6 @@ class ProductController extends Controller
         $id = (new Request())->get('id');
 
         $model = (new ProductRepository())->getOne($id);
-        echo $this->render("basket", ['model' => $model]);
+        echo $this->render("card", ['model' => $model]);
     }
 }
