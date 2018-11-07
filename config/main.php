@@ -22,6 +22,9 @@ return [
             ],
         'session' => [
             'class' => \app\services\Session::class
+        ],
+        'userrepo' => [
+            'class' => \app\models\repository\UserRepository::class
         ]
     ]
 ];

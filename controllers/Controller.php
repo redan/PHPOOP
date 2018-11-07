@@ -3,12 +3,14 @@
 namespace app\controllers;
 
 use app\services\renderers\IRenderer;
+use app\base\App;
 
 abstract class Controller
 {
     protected $action;
     protected $defaultAction = 'index';
     protected $layout = 'main';
+    protected $layoutForNewUser = 'newMain';
     protected $useLayout = true;
 
     protected $renderer = null;
@@ -33,7 +35,12 @@ abstract class Controller
     {
         if($this->useLayout){
             $content = $this->renderTemplate($template, $params);
-            return $this->renderTemplate("layouts/{$this->layout}", ['content' => $content]);
+            if(!empty(App::call()->session->get('login'))){
+                $content = $this->renderTemplate("layouts/{$this->layout}", ['content' => $content]);
+            }else{
+                $content = $this->renderTemplate("layouts/{$this->layoutForNewUser}", ['content' => $content]);
+            }
+            return $content;
         }else{
             $this->renderTemplate($template, $params);
         }

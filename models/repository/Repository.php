@@ -31,11 +31,11 @@ abstract class Repository implements IRepository
 
     public function delete(DataEntity $entity)
     {
-        $sql = "DELETE FROM products WHERE id = :id";
+        $table = static::getTableName();
+        $sql = "DELETE FROM {$table} WHERE id = :id";
         $this->db->execute($sql, [':id' => $entity->id]);
     }
 
-    //['name' => 'dkfjk']
     public function insert(DataEntity $entity)
     {
         $columns = [];
@@ -54,7 +54,6 @@ abstract class Repository implements IRepository
         $placeholders = implode(", ", array_keys($params));
 
         $table = $this->getTableName();
-        // INSERT INTO products (id, name, description) VALUES (:id, :name, :descritpion)
         $sql = "INSERT INTO `{$table}` ({$columns}) VALUES ({$placeholders})";
         $this->db->execute($sql, $params);
         $this->id = $this->db->lastInsertId();
@@ -62,7 +61,14 @@ abstract class Repository implements IRepository
 
     public function update(DataEntity $entity)
     {
-
+        foreach ($entity as $key => $value){
+            if ($key == 'db'){
+                continue;
+            }
+            $table = static::getTableName();
+        }
+        $sql = "UPDATE {$table} SET {$key} = '{$value}' WHERE id = :id";
+        $this->db->execute($sql, [':id' => $entity->id]);
     }
 
     public function save(DataEntity $entity)
@@ -74,7 +80,7 @@ abstract class Repository implements IRepository
         }
     }
 
-    private static function getDb(){
+    protected static function getDb(){
         return App::call()->db;
     }
 }

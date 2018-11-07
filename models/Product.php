@@ -2,6 +2,7 @@
 
 namespace app\models;
 
+
 class Product extends DataEntity
 {
     public $id;

@@ -8,16 +8,15 @@
     <title>Document</title>
 </head>
 <body>
-<header>123</header>
-<div class="content">
-    <a href="/product">Каталог</a>
-    <a href="/basket">Корзина</a>
-    <span>
-<!--       todo-->
-    </span>
-    <a href="/exit">Выйти</a>
+    <header>
+    12
+    </header>
+    <a href="/index">Главная</a>
+    <a href="/authentication">Войти</a>
+    <a href="/registration">Регистрация</a>
     <?=$content?>
-</div>
-<footer>456</footer>
+    <footer>
+    12
+    </footer>
 </body>
 </html>

@@ -17,4 +17,9 @@ class BasketRepository extends Repository
         return Basket::class;
     }
 
+    public function addToBasket($userName, $basket, $adress, $status)
+    {
+        //todo
+    }
+
 }

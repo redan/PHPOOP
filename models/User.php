@@ -8,9 +8,4 @@ class User extends DataEntity
     public $login;
     public $password;
 
-
-    public static function getTableName()
-    {
-        return 'users';
-    }
 }
