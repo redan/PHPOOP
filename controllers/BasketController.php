@@ -10,15 +10,30 @@ use app\services\Request;
 
 class BasketController extends Controller
 {
+
+
     public function actionIndex()
     {
-        $id = App::call()->session->get('id');
-        $model = (new BasketRepository())->getOne($id);
+        $basket = App::call()->session->get('basket');
+        $login = App::call()->session->get('login');
+        $model = (new BasketRepository())->getAllFromLogin($login);
         if ($model){
             echo $this->render("basket", ['model' => $model]);
+            if (isset($basket)) {
+                $model = [];
+                foreach ($basket['id'] as $key => $value) {
+                    $product = (new ProductRepository())->getOne($key);
+                    $price = (int)$product->price * $value['qty'];
+                    $model['totalPrice'] += $price;
+                    $model["productId$key"] = $product;
+                    $model["productCount$key"] = $value['qty'];
+                }
+                echo $this->renderTemplate("sessionBasket", ['model' => $model]);
+            }
         }else{
             $this->prepareBasket();
         }
+        $this->actionAdd();
     }
 
 
@@ -42,11 +57,14 @@ class BasketController extends Controller
     }
 
     public function actionAdd(){
-        $this->getSession();
         $request = App::call()->request;
         if ($request->isPost()){
+            $userName = $_SESSION['login'];
+            $basket = base64_encode(serialize($_SESSION['basket']));
             $adress = $request->post('adress');
-            //todo
+            $status = 'В пути';
+            App::call()->basketRepo->addToBasket($userName, $basket, $adress, $status);
+            unset($_SESSION['basket']);
         }
     }
 

@@ -25,6 +25,12 @@ return [
         ],
         'userrepo' => [
             'class' => \app\models\repository\UserRepository::class
+        ],
+        'basketRepo' => [
+            'class' => \app\models\repository\BasketRepository::class
+        ],
+        'productRepo' => [
+            'class' => \app\models\repository\ProductRepository::class
         ]
     ]
 ];
